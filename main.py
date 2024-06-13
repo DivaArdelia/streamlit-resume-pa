@@ -78,11 +78,12 @@ def main():
         non_zero_indices = np.where(user_prediction_proba[0] > 0)[0]
         filtered_proba = user_prediction_proba[0][non_zero_indices]
         filtered_labels = class_labels[non_zero_indices]
+        filtered_category_names = [category_mapping[label] for label in filtered_labels]
 
         fig, ax = plt.subplots(figsize=(4, 2))
-        ax.pie(filtered_proba, labels=filtered_labels, autopct='%1.1f%%', startangle=140, labeldistance=1.1)
+        ax.pie(filtered_proba, labels=filtered_category_names, autopct='%1.1f%%', startangle=140, labeldistance=1.1)
         ax.axis('equal')
-        ax.set_title("Predicted Category Probability Distribution")
+        ax.set_title("Predicted Category Probability Distribution", pad=20)
 
         st.pyplot(fig)
 
